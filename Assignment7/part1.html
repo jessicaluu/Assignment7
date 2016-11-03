@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Part 1 | Payment Options</title>
+        <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+        <style>
+            body {
+                padding: 4em;
+                font-family: Oswald, "Helvetica Neue", Helvetica, sans-serif;
+            }
+            
+            form {
+                margin: 0 auto; 
+                padding: 3em;
+                border-radius: 10px; 
+                background-color: lavender;
+                width: 500px;
+                height: 120px; 
+            }
+            
+            div {
+                padding: 7px; 
+                margin: 20px;
+                font-size: 14px;
+                background-color: white;
+                width: 450px;
+                height: 65px; 
+            }
+            
+            input[type=submit] {
+                width: 50px;
+                background-color: mediumpurple;
+                color: white;
+                border-radius: 5px; 
+            }
+            
+            input {
+                margin: 1px;
+            }
+        </style>
+        <script>
+            $(document).ready(function(){
+                $(".option").hide();
+                $("input[name$='payment']").click(function() {
+                    var selection = $(this).val();
+                    $(".option").hide();
+                    $("#" + selection).show(); 
+                })
+            });
+        </script>
+    </head>
+    
+    <body>
+        <form id="payment" name="payment" method="post" action="">
+            Payment Options:
+            <label><input type="radio" name="payment" value="creditcard"> Credit Card</label>
+            <label><input type="radio" name="payment" value="wiretransfer"> Wire Transfer</label> &nbsp;
+            <input type="submit" value="Buy!">
+        
+            <div class="option" id="creditcard">
+                Card Number:
+                <input type="text" id="cardnumber" name="cardnumber">
+                <br>
+                Expiration Date:
+                <input type="text" id="expirationMonth" name="expirationMonth" size="2">
+                /
+                <input type="text" id="expirationYear" name="expirationYear" size="4">
+                <br>
+                3-Digit Security Number:
+                <input type="text" id="securitynumber" name="securitynumber" size="3">
+            </div>
+
+            <div class="option" id="wiretransfer">
+                Transfer the amount to: reg. $957.00, to account 0009286322 (in English)
+            </div>
+        </form>
+        
+    </body>
+</html>

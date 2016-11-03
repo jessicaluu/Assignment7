@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Part 2 | Trash - Drag & Drop</title>
+        <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+        <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <style>
+            body {
+                padding: 4em;
+                font-family: Oswald, "Helvetica Neue", Helvetica, sans-serif;
+            }
+            
+            .removable {
+                padding: 0.5em;
+            }
+            
+            .dragthis {
+                width: 150px;
+                height: 150px;
+                background-color: lavenderblush;
+                border: 1px solid black;
+                text-align: center;
+                float: left;
+                display: block;
+                margin: 5px; 
+            }
+            
+            #trash {
+                width: 70px;
+                height: 70px;
+                background-color: grey;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                margin: 75px;
+            }
+            
+            #trashicon {
+                width: 75px;
+                height: 75px;
+                border-radius: 10px;
+            }
+            
+            img {
+                height: 120px;
+            }
+            
+            ul {
+                list-style: none;
+            }
+            
+            ul li span {
+                height: 150px;
+                display: table-cell;
+                vertical-align: middle;
+            }
+        </style>
+        <script>
+            $(function() {
+                $(".dragthis").draggable();
+                $('#trash').droppable({
+                    over: function(event, ui) {
+                        ui.draggable.remove();
+                    }
+                });
+            });
+        </script>
+    </head>
+    
+    <body>
+        <ul class="removable">
+            <li class="dragthis"><span>I want this in the trash.</span></li>
+            <li class="dragthis"><span>Javascript is so cool.</span></li>
+            <li class="dragthis"><span>I definitely want this in the trash.</span></li>
+            <li class="dragthis"><span></span></li>
+            <li class="dragthis"><span>This list item can go in the trash as well.</span></li>
+            <li class="dragthis"><span>Do I want this? Nah, trash it!</span></li>
+            <li class="dragthis"><span></span></li>
+            <li class="dragthis"><span>CSC4370 is awesome.</span></li>
+            <li class="dragthis"><span></span></li>
+            <li class="dragthis"><span></span></li>
+            <li class="dragthis"><span></span></li>
+        </ul>
+        <div id="trash" ondrop="drop(event)"><img src="trash.jpg" id="trashicon"></div>
+    </body>
+</html>
